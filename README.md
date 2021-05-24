@@ -18,7 +18,7 @@ cd ..
 ./kb/kb.exe links search -tag=dev
 ```
 
-## Sections
+## Collections
 
 - [Libraries](libraries.yaml)
 
