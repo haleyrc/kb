@@ -14,8 +14,20 @@ func Run(args ...string) error {
 	switch command {
 	case "links":
 		return handleLinks(args[1:]...)
+	case "shopping":
+		return handleShopping(args[1:]...)
 	default:
 		return fmt.Errorf("run: invalid command: %s", command)
+	}
+}
+
+func handleShopping(args ...string) error {
+	command := args[0]
+	switch command {
+	case "search":
+		return searchShoppingList(args[1:]...)
+	default:
+		return fmt.Errorf("shopping: invalid command: %s", command)
 	}
 }
 
@@ -40,6 +52,49 @@ func newLink(args ...string) error {
 		return fmt.Errorf("new: %w", err)
 	}
 	return nil
+}
+
+func searchShoppingList(args ...string) error {
+	var filter shoppingFilter
+	if err := filter.Parse(args...); err != nil {
+		return fmt.Errorf("search: %w", err)
+	}
+
+	var items []ShoppingItem
+	if err := load("shopping", &items); err != nil {
+		return fmt.Errorf("search: %w", err)
+	}
+
+	results, err := filter.Search(items)
+	if err != nil {
+		return fmt.Errorf("search: %w", err)
+	}
+
+	for _, result := range results {
+		fmt.Fprintf(os.Stderr, "%s\n", result.Name)
+		fmt.Fprintf(os.Stderr, "%s\n", result.Category)
+		fmt.Fprintf(os.Stderr, "$%.2f\n", result.Price)
+		fmt.Fprintf(os.Stderr, "%s\n", result.Link)
+	}
+
+	return nil
+}
+
+type shoppingFilter struct{}
+
+func (sf *shoppingFilter) Parse(args ...string) error {
+	return nil
+}
+
+func (sf *shoppingFilter) Search(items []ShoppingItem) ([]ShoppingItem, error) {
+	return items, nil
+}
+
+type ShoppingItem struct {
+	Name     string
+	Category string
+	Link     string
+	Price    float64
 }
 
 func searchLinks(args ...string) error {
