@@ -2,3 +2,7 @@
   author: Michelle Bu
   url: https://increment.com/apis/api-design-for-eager-discering-developers/
   tags: dev,api
+- title: How to set up Vim for Go Development
+  author: Preslav Mihaylov
+  url: https://pmihaylov.com/vim-for-go-development/
+  tags: vim,dev,go
