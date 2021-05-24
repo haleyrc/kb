@@ -20,5 +20,22 @@ cd ..
 
 ## Sections
 
-[Links](links.yaml)
-[Shopping](shopping.yaml)
+- [Libraries](libraries.yaml)
+
+  A list of useful libraries tagged by language.
+
+- [Links](links.yaml)
+
+  A list of high-quality resources tagged by related area.
+
+- [Reading](reading.yaml)
+
+  A list of articles, blog posts, and papers that I still need to get around to reading.
+
+- [Shopping](shopping.yaml)
+
+  Items that I'd like to buy at some point but aren't pressing.
+
+- [Tools](tools.yaml)
+
+  A list of handy tools, calculators, etc. for performing various functions.
