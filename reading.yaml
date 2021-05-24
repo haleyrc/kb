@@ -1,0 +1,13 @@
+- name: A Brief Introduction to Esoteric Languages
+  author: Hillel Wayne
+  link: https://www.hillelwayne.com/talks/esolangs/
+- name: Algorithms in Go
+  link: https://m.habr.com/en/post/545986/
+- name: Tao of React - Software Design, Architecture & Best Practices
+  author: Alex Kondov
+  link: https://alexkondov.com/tao-of-react/?ck_subscriber_id=478666457
+- name: Language Mechanics On Stacks And Pointers
+  author: William Kennedy
+  link: https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html
+- name: How SQLite Is Tested
+  link: https://www.sqlite.org/testing.html

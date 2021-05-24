@@ -1,0 +1,17 @@
+- name: readme.so
+  description: A tool for generating READMEs using a visual editor.
+  link: https://readme.so/
+  notes: I'm not sure if I would ever actually use this to build a README, but I like it as a reminder of important sections to have.
+- name: Mermaid
+  description: A Javascript based diagramming tool for creating visualizations using text and code.
+  link: https://mermaid-js.github.io/mermaid/#/
+  notes: This is like graphviz for Markdown. I'm not sure what the build pipeline needs to be to use this effectively, but it would fill in a lot of use-cases for me if I could figure that out.
+- name: Tint & Shade Generator
+  description: A tool for generating various tints and shades from a base color.
+  link: https://maketintsandshades.com/
+- name: Type Scale
+  description: A tool for generating type scales from a base font and scale type.
+  link: https://type-scale.com/
+- name: Mage
+  description: A make/rake-like build tool using Go
+  link: https://magefile.org/
