@@ -21,3 +21,4 @@ cd ..
 ## Sections
 
 [Links](links.yaml)
+[Shopping](shopping.yaml)
