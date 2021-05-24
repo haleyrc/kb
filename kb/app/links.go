@@ -1,11 +1,26 @@
 package app
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"os"
 	"strings"
 )
+
+func promptString(dest *string, label, defaultValue string) error {
+	fmt.Printf("%s [%s]: ", label, defaultValue)
+
+	reader := bufio.NewReader(os.Stdin)
+	text, err := reader.ReadString('\n')
+	if err != nil {
+		return fmt.Errorf("prompt string: %w", err)
+	}
+
+	*dest = strings.TrimSpace(text)
+
+	return nil
+}
 
 type Link struct {
 	Title  string
@@ -15,12 +30,37 @@ type Link struct {
 }
 
 func (l *Link) Parse(args ...string) error {
+	var interactive bool
 	fs := flag.NewFlagSet("search", flag.ContinueOnError)
+	fs.BoolVar(&interactive, "i", false, "Prompt for missing information interactively")
 	fs.StringVar(&l.Title, "title", "", "The title of the link")
 	fs.StringVar(&l.Author, "author", "", "The author of the link")
 	fs.StringVar(&l.URL, "url", "", "The url of the link")
 	fs.StringVar(&l.Tags, "tags", "", "The tags of the link")
 	fs.Parse(args)
+
+	if interactive {
+		if err := promptString(&l.Title, "Title", l.Title); err != nil {
+			return fmt.Errorf("parse: %w", err)
+		}
+		if err := promptString(&l.Author, "Author", l.Author); err != nil {
+			return fmt.Errorf("parse: %w", err)
+		}
+		if err := promptString(&l.URL, "URL", l.URL); err != nil {
+			return fmt.Errorf("parse: %w", err)
+		}
+		if err := promptString(&l.Tags, "Tags", l.Tags); err != nil {
+			return fmt.Errorf("parse: %w", err)
+		}
+	}
+
+	if l.Title == "" {
+		return fmt.Errorf("parse: title is required")
+	}
+	if l.URL == "" {
+		return fmt.Errorf("parse: url is required")
+	}
+
 	return nil
 }
 

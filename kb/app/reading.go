@@ -13,11 +13,34 @@ type ReadingListItem struct {
 }
 
 func (i *ReadingListItem) Parse(args ...string) error {
+	var interactive bool
+
 	fs := flag.NewFlagSet("search", flag.ContinueOnError)
+	fs.BoolVar(&interactive, "i", false, "Prompt for missing information interactively")
 	fs.StringVar(&i.Name, "name", "", "The name of the reading list item")
 	fs.StringVar(&i.Author, "author", "", "The author's name")
 	fs.StringVar(&i.Link, "link", "", "The link to the item")
 	fs.Parse(args)
+
+	if interactive {
+		if err := promptString(&i.Name, "Name", i.Name); err != nil {
+			return fmt.Errorf("parse: %w", err)
+		}
+		if err := promptString(&i.Author, "Author", i.Author); err != nil {
+			return fmt.Errorf("parse: %w", err)
+		}
+		if err := promptString(&i.Link, "Link", i.Link); err != nil {
+			return fmt.Errorf("parse: %w", err)
+		}
+	}
+
+	if i.Name == "" {
+		return fmt.Errorf("parse: name is required")
+	}
+	if i.Link == "" {
+		return fmt.Errorf("parse: link is required")
+	}
+
 	return nil
 }
 
@@ -50,6 +73,9 @@ func newReadingListItem(args ...string) error {
 	if err := appendData("reading", []ReadingListItem{item}); err != nil {
 		return fmt.Errorf("new: %w", err)
 	}
+
+	fmt.Println("Reading list item created successfully.")
+
 	return nil
 }
 
