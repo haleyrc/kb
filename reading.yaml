@@ -11,3 +11,9 @@
   link: https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html
 - name: How SQLite Is Tested
   link: https://www.sqlite.org/testing.html
+- name: Graceful Shutdowns in Golang with signal.NotifyContext
+  author: Taliesin Millhouse
+  link: https://millhouse.dev/posts/graceful-shutdowns-in-golang-with-signal-notify-context
+- name: PlanetScale CLI Basics
+  author: Kyle Nickel
+  link: https://dev.to/nickelkr/planetscale-cli-basics-21d8
